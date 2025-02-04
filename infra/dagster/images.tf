@@ -1,3 +1,4 @@
+/*
 resource "docker_registry_image" "dagster" {
   for_each = docker_image.dagster
   name     = each.value.name
@@ -19,3 +20,4 @@ resource "docker_image" "dagster" {
   }
   keep_locally = true
 }
+*/

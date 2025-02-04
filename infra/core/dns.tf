@@ -1,3 +1,4 @@
+/*
 resource "aws_route53_record" "dagster" {
   zone_id = var.root_zone_id
   name    = "dagster"
@@ -9,3 +10,4 @@ resource "aws_route53_record" "dagster" {
     evaluate_target_health = true
   }
 }
+*/

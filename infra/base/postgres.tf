@@ -4,7 +4,7 @@ module "postgres" {
   identifier = "${local.project_name}-db"
 
   engine                = "postgres"
-  engine_version        = "15.5"
+  engine_version        = "15.10"
   instance_class        = "db.t3.micro"
   allocated_storage     = 20
   max_allocated_storage = 100

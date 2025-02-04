@@ -42,16 +42,18 @@ module "alb" {
         status_code = "HTTP_301"
       }
     }
-
+    
+    /*
     https = {
       port            = 443
       protocol        = "HTTPS"
-      certificate_arn = module.acm.acm_certificate_arn
+      // certificate_arn = module.acm.acm_certificate_arn
 
       forward = {
         target_group_key = "dagster"
       }
     }
+    */
   }
 
   target_groups = {

@@ -1,7 +1,18 @@
+variable "dagster_ecr_images" {
+  type = map(string)
+
+  default = {
+    "daemon": "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-daemon:v0.0.1",
+    "webserver": "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-webserver:v0.0.1"
+  }
+
+}
+
 module "ecs_service" {
   source = "terraform-aws-modules/ecs/aws//modules/service"
 
-  for_each = docker_registry_image.dagster
+  // for_each = docker_registry_image.dagster
+  for_each = var.dagster_ecr_images
 
   name        = "dagster-${each.key}"
   cluster_arn = data.aws_ecs_cluster.dagster.arn
@@ -18,7 +29,7 @@ module "ecs_service" {
         cpu       = 512
         memory    = 1024
         essential = true
-        image     = each.value.name
+        image     = each.value
 
         memory_reservation = 100
 

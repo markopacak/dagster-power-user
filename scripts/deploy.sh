@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 init() {
     echo -e "\n Initializing terraform configuration for module $1... \n"
-    terraform -chdir="$1" init -backend-config="../config.s3.tfbackend"
+    terraform -chdir="$1" init -reconfigure -backend-config="../config.s3.tfbackend"
 }
 
 apply() {
