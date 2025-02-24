@@ -28,5 +28,4 @@ module "ecr_secret" {
     username = data.aws_ecr_authorization_token.dagster.user_name,
     password = data.aws_ecr_authorization_token.dagster.password
   })
-
 }

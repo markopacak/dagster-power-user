@@ -114,9 +114,11 @@ data "aws_secretsmanager_secret" "ecr" {
   name = "ecr-auth"
 }
 
+/*
 data "aws_lb_target_group" "dagster" {
   name = "dagster"
 }
+*/
 data "aws_lb" "dagster" {
   name = "${local.project_name}-alb"
 }

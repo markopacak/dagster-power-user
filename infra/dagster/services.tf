@@ -1,11 +1,38 @@
+
+resource "aws_lb_listener" "dagster" {
+  load_balancer_arn = var.load_balancer_arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.dagster.arn
+  }
+}
+
+resource "aws_lb_target_group" "dagster" {
+  name        = "dagster"
+  protocol    = "HTTP"
+  port        = 80
+  target_type = "ip"
+  vpc_id = data.aws_vpc.dagster.id
+
+  health_check {
+    enabled = true
+    path = "/server_info"
+    healthy_threshold = 2
+    unhealthy_threshold = 10
+    protocol = "HTTP"
+  }
+}
+
 variable "dagster_ecr_images" {
   type = map(string)
 
   default = {
-    "daemon": "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-daemon:v0.0.1",
-    "webserver": "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-webserver:v0.0.1"
+    "daemon" : "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-daemon:v0.0.1",
+    "webserver" : "361689917280.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-webserver:v0.0.1"
   }
-
 }
 
 module "ecs_service" {
@@ -97,7 +124,7 @@ module "ecs_service" {
 
   load_balancer = each.key == "webserver" ? {
     service = {
-      target_group_arn = data.aws_lb_target_group.dagster.arn
+      target_group_arn = aws_lb_target_group.dagster.arn
       container_name   = each.key
       container_port   = 3000
     }

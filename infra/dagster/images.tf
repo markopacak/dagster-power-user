@@ -1,4 +1,5 @@
 /*
+// I will build / push the container from the command line 
 resource "docker_registry_image" "dagster" {
   for_each = docker_image.dagster
   name     = each.value.name
