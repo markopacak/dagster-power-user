@@ -1,4 +1,11 @@
-INstructions coming soon
+Instructions coming soon
+
+  aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 1234.dkr.ecr.eu-central-1.amazonaws.com
+
+  docker push 1234.dkr.ecr.eu-central-1.amazonaws.com/dagster-ecs-poc-daemon:v0.0.1
+
+
+
 
 # Dagster Power User
 

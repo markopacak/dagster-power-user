@@ -1,0 +1,1 @@
+Support resources that exist outside the dagster deployment life-cyle.
