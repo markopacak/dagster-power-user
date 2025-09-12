@@ -1,4 +1,20 @@
-Instructions coming soon
+# markopacak/dagster-power-user
+
+This is an adaptation of the `dagster-power-user` series intended to set up a minimal working infrastructure for dagster.
+
+## Set up
+
+Similar steps to the original guide (see below). First, create the infra for base and core.
+
+    cd infra/base
+    terraform apply
+
+    cd infra/core
+    terraform apply
+
+Now, build the images for the dagster-daemon and dagaster-webserver.
+Then push them to ECR.
+
 
   aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 1234.dkr.ecr.eu-central-1.amazonaws.com
 
