@@ -1,4 +1,4 @@
-# markopacak/dagster-power-user
+# Terraform Modules for Dagster on AWS
 
 This is an adaptation of the `dagster-power-user` series intended to set up a minimal working infrastructure for dagster.
 
